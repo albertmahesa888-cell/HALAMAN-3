@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pilih Tiket - POLIPONI 2026</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <style>
+    body {
+      background: #f8f8f8;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
+
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(0,0,0,.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,.08) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+
+    .shadow-pop {
+      box-shadow: 10px 10px 0 #000;
+    }
+
+    .glow {
+      animation: glow 2s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 10px #ff0;
+      }
+      to {
+        box-shadow: 0 0 30px #ff0080;
+      }
+    }
+
+    .ticket-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .floating {
+      animation: floating 4s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body class="grid-bg">
+
+<!-- NAVBAR -->
+<nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b-4 border-black">
+  <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+
+    <div>
+      <div class="text-3xl font-black">POLIPONI</div>
+      <div class="font-bold text-sm">SHEILA ON 7 BALI</div>
+    </div>
+
+    <button class="bg-black text-white px-7 py-3 rounded-full font-black glow hover:scale-110 transition">
+      CHECKOUT
+    </button>
+
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="py-14 px-6">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="bg-white border-4 border-black rounded-[40px] p-5 shadow-pop overflow-hidden floating">
+      <img src="banner.jpg" class="w-full rounded-[30px] object-cover">
+    </div>
+
+  </div>
+</section>
+
+<!-- HEADER -->
+<section class="px-6 pb-10">
+  <div class="max-w-7xl mx-auto text-center">
+
+    <div class="inline-block bg-red-500 text-white px-7 py-3 text-2xl font-black shadow-pop rotate-[-2deg] mb-8 animate-pulse">
+      PENAMBAHAN TIKET RESMI
+    </div>
+
+    <h1 class="text-6xl lg:text-8xl font-black leading-none mb-6">
+      PILIH TIKET<br>
+      BUNDLING
+    </h1>
+
+    <p class="text-2xl font-bold max-w-4xl mx-auto leading-relaxed">
+      Pilih kategori tiket tambahan resmi untuk POLIPONI 2026 SHEILA ON 7 BALI.
+    </p>
+
+  </div>
+</section>
+
+<!-- TICKET -->
+<section class="pb-24 px-6">
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-3 gap-10">
+
+    <!-- FESTIVAL -->
+    <div class="ticket-card bg-gray-300 border-4 border-black rounded-[40px] p-10 shadow-pop opacity-70 transition duration-300 relative overflow-hidden">
+
+      <div class="absolute top-0 right-0 bg-red-600 text-white px-5 py-3 rounded-bl-3xl text-lg font-black">
+        SOLD OUT
+      </div>
+
+      <div class="text-5xl font-black mb-6">FESTIVAL</div>
+
+      <div class="text-2xl font-black mb-3">
+        BUNDLING 6 ORANG
+      </div>
+
+      <div class="text-6xl font-black mb-8">
+        Rp1.510.000
+      </div>
+
+      <ul class="space-y-4 text-xl font-bold mb-10">
+        <li>✔ Festival Area</li>
+        <li>✔ General Access</li>
+        <li>✔ Food Bazaar</li>
+      </ul>
+
+      <button disabled class="w-full bg-gray-500 text-white py-5 rounded-full text-2xl font-black cursor-not-allowed opacity-70">
+        SOLD OUT
+      </button>
+
+    </div>
+
+    <!-- PREMIUM -->
+    <div class="ticket-card bg-white border-4 border-black rounded-[40px] p-10 shadow-pop transition duration-300 relative overflow-hidden">
+
+      <div class="absolute top-0 right-0 bg-green-400 px-5 py-3 rounded-bl-3xl text-lg font-black border-l-4 border-b-4 border-black">
+        ON SALE
+      </div>
+
+      <div class="text-5xl font-black mb-6">PREMIUM</div>
+
+      <div class="text-2xl font-black mb-3">
+        BUNDLING 6 ORANG
+      </div>
+
+      <div class="text-6xl font-black mb-8">
+        Rp2.510.000
+      </div>
+
+      <ul class="space-y-4 text-xl font-bold mb-10">
+        <li>✔ Premium Area</li>
+        <li>✔ Fast Queue</li>
+        <li>✔ Official Wristband</li>
+      </ul>
+
+      <div class="flex items-center justify-center gap-6 mb-10">
+
+        <button onclick="decrease('premium')" class="w-16 h-16 bg-black text-white text-4xl rounded-full font-black hover:scale-110 transition">
+          -
+        </button>
+
+        <div id="premiumQty" class="text-6xl font-black w-20 text-center">0</div>
+
+        <button onclick="increase('premium', 2510000, 3)" class="w-16 h-16 bg-black text-white text-4xl rounded-full font-black hover:scale-110 transition">
+          +
+        </button>
+
+      </div>
+
+      <div class="text-center text-lg font-black text-gray-500">
+        Maksimal 3 Bundling
+      </div>
+
+    </div>
+
+    <!-- FAST TRACK -->
+    <div class="ticket-card bg-yellow-300 border-4 border-black rounded-[40px] p-10 shadow-pop transition duration-300 relative overflow-hidden">
+
+      <div class="absolute top-0 right-0 bg-black text-white px-5 py-3 rounded-bl-3xl text-lg font-black">
+        HOT SALE
+      </div>
+
+      <div class="text-5xl font-black mb-6">FAST TRACK</div>
+
+      <div class="text-2xl font-black mb-3">
+        BUNDLING 6 ORANG
+      </div>
+
+      <div class="text-6xl font-black mb-8">
+        Rp3.510.000
+      </div>
+
+      <ul class="space-y-4 text-xl font-bold mb-10">
+        <li>✔ Fast Track Access</li>
+        <li>✔ Front Area</li>
+        <li>✔ Exclusive Merchandise</li>
+      </ul>
+
+      <div class="flex items-center justify-center gap-6 mb-10">
+
+        <button onclick="decrease('fast')" class="w-16 h-16 bg-black text-white text-4xl rounded-full font-black hover:scale-110 transition">
+          -
+        </button>
+
+        <div id="fastQty" class="text-6xl font-black w-20 text-center">0</div>
+
+        <button onclick="increase('fast', 3510000, 3)" class="w-16 h-16 bg-black text-white text-4xl rounded-full font-black hover:scale-110 transition">
+          +
+        </button>
+
+      </div>
+
+      <div class="text-center text-lg font-black text-gray-700">
+        Maksimal 3 Bundling
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- TOTAL -->
+<section class="fixed bottom-0 left-0 w-full bg-black border-t-4 border-white py-6 px-6 z-50">
+
+  <div class="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between items-center gap-6">
+
+    <div class="text-white">
+      <div class="text-xl font-bold text-gray-400">TOTAL PEMBELIAN</div>
+      <div id="totalPrice" class="text-5xl font-black">Rp0</div>
+    </div>
+
+    <div class="flex gap-4 items-center">
+
+      <div class="bg-white px-6 py-4 rounded-2xl border-4 border-black text-center">
+        <div class="text-sm font-bold text-gray-500">PREMIUM</div>
+        <div id="premiumCount" class="text-3xl font-black">0</div>
+      </div>
+
+      <div class="bg-yellow-300 px-6 py-4 rounded-2xl border-4 border-black text-center">
+        <div class="text-sm font-bold text-gray-700">FAST TRACK</div>
+        <div id="fastCount" class="text-3xl font-black">0</div>
+      </div>
+
+      <button class="bg-green-400 text-black px-10 py-5 rounded-full text-2xl font-black hover:scale-110 transition glow border-4 border-black">
+        LANJUT CHECKOUT
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<script>
+
+  let premiumQty = 0;
+  let fastQty = 0;
+  let total = 0;
+
+  function formatRupiah(number) {
+    return new Intl.NumberFormat('id-ID').format(number);
+  }
+
+  function increase(type, price, max) {
+
+    if(type === 'premium') {
+      if(premiumQty >= max) return;
+      premiumQty++;
+      document.getElementById('premiumQty').innerText = premiumQty;
+      document.getElementById('premiumCount').innerText = premiumQty;
+    }
+
+    if(type === 'fast') {
+      if(fastQty >= max) return;
+      fastQty++;
+      document.getElementById('fastQty').innerText = fastQty;
+      document.getElementById('fastCount').innerText = fastQty;
+    }
+
+    total += price;
+
+    updateTotal();
+  }
+
+  function decrease(type) {
+
+    if(type === 'premium' && premiumQty > 0) {
+      premiumQty--;
+      total -= 2510000;
+      document.getElementById('premiumQty').innerText = premiumQty;
+      document.getElementById('premiumCount').innerText = premiumQty;
+    }
+
+    if(type === 'fast' && fastQty > 0) {
+      fastQty--;
+      total -= 3510000;
+      document.getElementById('fastQty').innerText = fastQty;
+      document.getElementById('fastCount').innerText = fastQty;
+    }
+
+    updateTotal();
+  }
+
+  function updateTotal() {
+    document.getElementById('totalPrice').innerText = 'Rp' + formatRupiah(total);
+  }
+
+  gsap.from('h1', {
+    y: 80,
+    opacity: 0,
+    duration: 1.2
+  });
+
+  gsap.from('.ticket-card', {
+    y: 100,
+    opacity: 0,
+    stagger: 0.2,
+    duration: 1.2
+  });
+
+</script>
+
+</body>
+</html>
